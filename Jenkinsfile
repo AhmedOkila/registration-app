@@ -43,12 +43,13 @@ pipeline {
         }
       }
     }
-    stage("Trigger CD Pipeline") {
-      steps {
-        script {
-          sh "curl --verbose --insecure --user ahmed:${JENKINS_TOKEN} --request "POST" --header "cache-control: no-cache" --header "content-type: application/x-www-form-urlencoded" --data "IMAGE_TAG =${IMAGE_TAG}" 'JENKINS_CD_JOB_URL/buildWithParameters?token=gitops-token'"
-        }
-      }
-    }
+    //! To be deployed later whaen ArgoCD works
+    // stage("Trigger CD Pipeline") {
+    //   steps {
+    //     script {
+    //       sh "curl --verbose --insecure --user ahmed:${JENKINS_TOKEN} --request "POST" --header "cache-control: no-cache" --header "content-type: application/x-www-form-urlencoded" --data "IMAGE_TAG =${IMAGE_TAG}" 'JENKINS_CD_JOB_URL/buildWithParameters?token=gitops-token'"
+    //     }
+    //   }
+    // }
   }
 }
