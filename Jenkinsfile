@@ -22,8 +22,8 @@ pipeline {
     stage("Clone the Repo") {
       steps {
         git branch: "app",
-            url: "https://github.com/AhmedOkila/registration-app.git",
-            credentialsId: "Github"
+          url: "https://github.com/AhmedOkila/registration-app.git",
+          credentialsId: "Github"
       }
     }
     stage("Build the Application") {
@@ -39,6 +39,13 @@ pipeline {
             docker_image = docker.build("${IMAGE_NAME}")
             docker_image.push("${IMAGE_TAG}")
           }
+        }
+      }
+    }
+    stage("Trigger CD Pipeline") {
+      steps {
+        script {
+          sh "curl --verbose --insecure --user ahmed:${JENKINS_TOKEN} --request "POST" --header "cache-control: no-cache" --header "content-type: application/x-www-form-urlencoded" --data "IMAGE_TAG =${IMAGE_TAG}" 'JENKINS_CD_JOB_URL/buildWithParameters?token=gitops-token'"
         }
       }
     }
