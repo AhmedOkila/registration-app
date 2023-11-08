@@ -6,7 +6,7 @@ pipeline {
     maven 'Maven3'
   }
   environment {
-    APP_NAME = "register-app"
+    APP_NAME = "registration-app"
     RELEASE = "1.0.0"
     DOCKER_USER = "ahmedokila"
     DOCKER_CREDENTIALS_ID = 'Dockerhub'
@@ -21,7 +21,7 @@ pipeline {
     }
     stage("Clone the Repo") {
       steps {
-        git branch: "main",
+        git branch: "app",
             url: "https://github.com/AhmedOkila/registration-app.git",
             credentialsId: "Github"
       }
