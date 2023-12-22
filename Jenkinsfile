@@ -38,6 +38,11 @@ pipeline {
         }
       }
     }
+    stage("Remove Built Images") {
+      steps {
+        sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+        sh "docker rmi ${IMAGE_NAME}:latest"
+    }
     stage("Trigger CD Pipeline") {
       steps {
         script {
