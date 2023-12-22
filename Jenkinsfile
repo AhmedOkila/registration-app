@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    label "Jenkins-Slave"
-  }
-  tools {
-    maven 'Maven3'
-  }
+  agent any
   environment {
     APP_NAME = "registration-app"
     RELEASE = "1.0.0"
