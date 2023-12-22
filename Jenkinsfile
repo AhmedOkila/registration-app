@@ -41,7 +41,7 @@ pipeline {
     stage("Trigger CD Pipeline") {
       steps {
         script {
-          sh "curl --verbose --insecure --user admin:${JENKINS_TOKEN} --request 'POST' --header 'cache-control: no-cache' --header 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG =${IMAGE_TAG}' 'http://localhost:8080/job/RegistrationAppCD/buildWithParameters?token=gitops-token'"
+          sh "curl --verbose --insecure --user admin:${JENKINS_TOKEN} --request 'POST' --header 'cache-control: no-cache' --header 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://localhost:8080/job/RegistrationAppCD/buildWithParameters?token=gitops-token'"
         }
       }
     }
